@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CountryService {
@@ -35,4 +36,16 @@ public class CountryService {
         countryRepository.saveAll(countries);
     }
 
+    public List<Country> getAllCountries(){
+        return countryRepository.findAll();
+    }
+
+    public Country getRandomCountry(){
+        List<Country> countries = countryRepository.findAll();
+
+        Random random = new Random();
+        int randomIdx = random.nextInt(countries.size());
+
+        return countries.get(randomIdx);
+    }
 }
