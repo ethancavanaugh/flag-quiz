@@ -2,13 +2,15 @@ package com.ethancavanaugh.flagquiz.controllers;
 
 import com.ethancavanaugh.flagquiz.model.Country;
 import com.ethancavanaugh.flagquiz.services.CountryService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Random;
 
-@RestController
+
+@Controller
 public class CountryController {
     private final CountryService countryService;
 
@@ -16,13 +18,16 @@ public class CountryController {
         this.countryService = countryService;
     }
 
+    @ResponseBody
     @GetMapping("/countries")
     public List<Country> getCountries(){
         return countryService.getAllCountries();
     }
 
     @GetMapping("/countries/random")
-    public Country getRandomCountry(){
-        return countryService.getRandomCountry();
+    public String getRandomCountry(Model model){
+        Country country = countryService.getRandomCountry();
+        model.addAttribute("country", country);
+        return "single-country.html";
     }
 }

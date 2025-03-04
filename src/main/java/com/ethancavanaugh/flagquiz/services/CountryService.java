@@ -23,7 +23,6 @@ public class CountryService {
 
     @PostConstruct
     public void loadCountries() {
-        System.out.println(System.getProperty("user.dir"));
         List<Country> countries = new ArrayList<>();
 
         try(BufferedReader br = new BufferedReader(new FileReader(COUNTRY_CSV_PATH))){
