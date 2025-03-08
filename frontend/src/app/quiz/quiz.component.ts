@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'quiz-content',
   imports: [],
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss'
+  styleUrl: './quiz.component.css'
 })
 export class QuizComponent {
 

@@ -6,7 +6,7 @@ import { QuizComponent } from "./quiz/quiz.component";
   selector: 'app-root',
   imports: [RouterOutlet, QuizComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'flag-quiz-frontend';
