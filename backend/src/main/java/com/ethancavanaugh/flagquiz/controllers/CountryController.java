@@ -21,7 +21,11 @@ public class CountryController {
 
     @ResponseBody
     @GetMapping("/countries")
-    public List<CountryDTO> getCountries(){
+    public List<CountryDTO> getCountries(@RequestParam(required=false) String continent){
+        if (continent != null){
+            return countryService.findByContinent(continent);
+        }
+
         return countryService.getAllCountries();
     }
 

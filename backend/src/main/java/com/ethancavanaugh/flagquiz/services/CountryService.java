@@ -41,6 +41,11 @@ public class CountryService {
         return CountryDTO.of(countries);
     }
 
+    public List<CountryDTO> findByContinent(String continent){
+        List<Country> countries = countryRepository.findCountriesByContinent(continent);
+        return CountryDTO.of(countries);
+    }
+
     public Country getRandomCountry(){
         List<Country> countries = countryRepository.findAll();
 
