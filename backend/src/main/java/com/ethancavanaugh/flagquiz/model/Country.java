@@ -3,6 +3,7 @@ package com.ethancavanaugh.flagquiz.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Country {
@@ -42,6 +43,20 @@ public class Country {
         c.setFlagUrl(String.format("https://flagsapi.com/%s/flat/64.png", args[2]));
 
         return c;
+    }
+
+    public Country() {
+    }
+
+    public Country(Long id, String name, String continent, String alpha2,
+                   String alpha3, String flagUrl, List<String> aliases) {
+        this.id = id;
+        this.name = name;
+        this.continent = continent;
+        this.alpha2 = alpha2;
+        this.alpha3 = alpha3;
+        this.flagUrl = flagUrl;
+        this.aliases = aliases;
     }
 
     //Getters and Setters
@@ -99,5 +114,17 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Country country = (Country) o;
+        return Objects.equals(id, country.id) && Objects.equals(name, country.name) && Objects.equals(continent, country.continent) && Objects.equals(alpha2, country.alpha2) && Objects.equals(alpha3, country.alpha3) && Objects.equals(flagUrl, country.flagUrl) && Objects.equals(aliases, country.aliases);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, continent, alpha2, alpha3, flagUrl, aliases);
     }
 }

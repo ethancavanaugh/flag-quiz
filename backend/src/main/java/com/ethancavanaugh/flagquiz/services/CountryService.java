@@ -1,6 +1,7 @@
 package com.ethancavanaugh.flagquiz.services;
 
 import com.ethancavanaugh.flagquiz.model.Country;
+import com.ethancavanaugh.flagquiz.model.CountryDTO;
 import com.ethancavanaugh.flagquiz.repositories.CountryRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,9 @@ public class CountryService {
         countryRepository.saveAll(countries);
     }
 
-    public List<Country> getAllCountries(){
-        return countryRepository.findAll();
+    public List<CountryDTO> getAllCountries(){
+        List<Country> countries = countryRepository.findAll();
+        return CountryDTO.of(countries);
     }
 
     public Country getRandomCountry(){
@@ -47,4 +49,5 @@ public class CountryService {
 
         return countries.get(randomIdx);
     }
+
 }
