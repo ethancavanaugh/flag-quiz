@@ -23,7 +23,7 @@ public class CountryService {
     }
 
     @PostConstruct
-    public void loadCountries() {
+    public void loadCountriesFromCSV() {
         List<Country> countries = new ArrayList<>();
 
         try(BufferedReader br = new BufferedReader(new FileReader(COUNTRY_CSV_PATH))){

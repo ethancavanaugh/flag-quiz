@@ -25,7 +25,7 @@ public class CountryServiceTests {
     @Test
     @DisplayName("All 193 countries should be read from the csv file & saved")
     void loadCountries() {
-        countryService.loadCountries();
+        countryService.loadCountriesFromCSV();
         verify(countryRepository)
                 .saveAll(argThat(countries ->
                         ((List<Country>) countries).size() == 193));
