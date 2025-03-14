@@ -1,7 +1,9 @@
 <span>
   <img alt="Flag" [src]="curCountry.flagUrl"/>
-  <input #guess (keyup)="handleTyping(guess.value)" type="text" id="guess" name="guess" />
+  <input type="text" (keyup)="handleTyping()" [(ngModel)]="curGuess" />
 </span>
+
+<!-- TEST -->
 <div *ngFor="let country of countryList">
   <span>
     <img [src]="country.flagUrl"/>
