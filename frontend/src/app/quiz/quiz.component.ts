@@ -3,6 +3,7 @@ import { CountryService } from '../country.service';
 import { Country } from '../country';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'quiz-content',
@@ -16,7 +17,7 @@ export class QuizComponent {
   countryIdx: number = 0;
   curGuess: string = "";
 
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: CountryService, private router: Router) {
     this.countryService.getAllCountries().subscribe(res => {
       this.countryList = res;
       this.countryList = this.countryList.slice(0, 3); //TESTING ONLY
@@ -44,8 +45,7 @@ export class QuizComponent {
   }
 
   private endGame(){
-    //TODO
-    console.log("Game is complete");
+    this.router.navigate(['/result'])
   }
 
 }
