@@ -36,8 +36,14 @@ public class CountryDTOTests {
 
         assertEquals(c1.getId(), c1DTO.getId());
         assertEquals(c1.getFlagUrl(), c1DTO.getFlagUrl());
-        assertTrue(c1DTO.getValidNames().contains(c1.getName()));
-        assertTrue(c1DTO.getValidNames().containsAll(c1.getAliases()));
+        assertEquals(c1.getName(), c1DTO.getProperName());
+        assertTrue(c1DTO.getValidNames().contains(c1.getName().toLowerCase()));
+        assertTrue(c1DTO.getValidNames().containsAll(
+                c1.getAliases()
+                        .stream()
+                        .map(String::toLowerCase)
+                        .toList())
+        );
     }
 
     @Test
@@ -46,7 +52,7 @@ public class CountryDTOTests {
         CountryDTO c2DTO = CountryDTO.of(c2);
 
         assertEquals(c2DTO.getValidNames(),
-                new ArrayList<>(List.of(c2.getName())));
+                new ArrayList<>(List.of(c2.getName().toLowerCase())));
     }
 
     @Test

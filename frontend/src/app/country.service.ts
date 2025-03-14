@@ -8,18 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class CountryService {
   baseUrl: string = "http://localhost:8080/"
-  testCountries: Country[] = [
-    {
-      id: 1,
-      flagUrl: "https://flagsapi.com/US/flat/64.png",
-      validNames: ["USA", "America", "United States"]
-    },
-    {
-      id: 2,
-      flagUrl: "https://flagsapi.com/CA/flat/64.png",
-      validNames: ["Canada"]
-    }
-  ];
 
   constructor(private http: HttpClient) { }
 

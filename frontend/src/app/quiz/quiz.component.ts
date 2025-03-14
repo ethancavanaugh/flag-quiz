@@ -27,7 +27,7 @@ export class QuizComponent {
 
   handleTyping() {
     console.log(this.curGuess);
-    if (this.curCountry.validNames.includes(this.curGuess)){
+    if (this.curCountry.validNames.includes(this.curGuess.toLowerCase())){
       console.log("Correct!");
       this.nextCountry();
     }
@@ -35,7 +35,7 @@ export class QuizComponent {
 
   private nextCountry(){
     this.curGuess = "";
-    
+
     if (++this.countryIdx >= this.countryList.length){
       this.endGame();
     } else {

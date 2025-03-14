@@ -7,16 +7,28 @@ import java.util.Objects;
 public class CountryDTO {
     private Long id;
     private String flagUrl;
+    private String properName;
     private List<String> validNames;
+
+    public String getProperName() {
+        return properName;
+    }
+
+    public void setProperName(String properName) {
+        this.properName = properName;
+    }
 
     public static CountryDTO of(Country c){
         CountryDTO dto = new CountryDTO();
         dto.setId(c.getId());
         dto.setFlagUrl(c.getFlagUrl());
+        dto.setProperName(c.getName());
 
         List<String> validNames = new ArrayList<>();
-        validNames.add(c.getName());
-        validNames.addAll(c.getAliases());
+        validNames.add(c.getName().toLowerCase());
+        for (String alias : c.getAliases()){
+            validNames.add(alias.toLowerCase());
+        }
         dto.setValidNames(validNames);
 
         return dto;
@@ -56,11 +68,11 @@ public class CountryDTO {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CountryDTO that = (CountryDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(flagUrl, that.flagUrl) && Objects.equals(validNames, that.validNames);
+        return Objects.equals(id, that.id) && Objects.equals(flagUrl, that.flagUrl) && Objects.equals(properName, that.properName) && Objects.equals(validNames, that.validNames);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, flagUrl, validNames);
+        return Objects.hash(id, flagUrl, properName, validNames);
     }
 }
