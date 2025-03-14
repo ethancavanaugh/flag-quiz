@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../country.service';
 import { Country } from '../country';
 import { CommonModule } from '@angular/common';
@@ -11,13 +11,16 @@ import { Router } from '@angular/router';
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css'
 })
-export class QuizComponent {
+
+export class QuizComponent implements OnInit {
   countryList!: Country[];
   curCountry!: Country;
   countryIdx: number = 0;
   curGuess: string = "";
 
-  constructor(private countryService: CountryService, private router: Router) {
+  constructor(private countryService: CountryService, private router: Router) { }
+
+  ngOnInit(): void {
     this.countryService.getAllCountries().subscribe(res => {
       this.countryList = res;
       this.countryList = this.countryList.slice(0, 3); //TESTING ONLY
@@ -26,7 +29,7 @@ export class QuizComponent {
     });
   }
 
-  handleTyping() {
+  handleTyping(): void {
     console.log(this.curGuess);
     if (this.curCountry.validNames.includes(this.curGuess.toLowerCase())){
       console.log("Correct!");
@@ -34,7 +37,7 @@ export class QuizComponent {
     }
   }
 
-  private nextCountry(){
+  private nextCountry(): void {
     this.curGuess = "";
 
     if (++this.countryIdx >= this.countryList.length){
@@ -44,7 +47,7 @@ export class QuizComponent {
     }
   }
 
-  private endGame(){
+  private endGame(): void {
     this.router.navigate(['/result'])
   }
 
