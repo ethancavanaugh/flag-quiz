@@ -1,7 +1,6 @@
 <span>
-  <img alt="Flag"/>
-  <input type="text" id="guess" name="guess" />
-  <button type="submit">Submit</button>
+  <img alt="Flag" [src]="curCountry.flagUrl"/>
+  <input #guess (keyup)="handleTyping(guess.value)" type="text" id="guess" name="guess" />
 </span>
 <div *ngFor="let country of countryList">
   <span>
