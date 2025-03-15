@@ -1,1 +1,3 @@
-<p>result works!</p>
+<h1>Results:</h1>
+<p>{{ results.numCorrect }}/{{ results.numQuestions }}</p>
+<p *ngFor="let ans of results.answers">Country ID: {{ ans.countryId }}, Correct? {{ ans.correct }}</p>

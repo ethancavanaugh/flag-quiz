@@ -1,13 +1,13 @@
 <main class="main">
 
-  <div class="header">
-    <h1><a [href]="['/']" style="text-decoration: none; color: black;">Flag Quiz</a></h1>
-  </div>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <h1><a class="navbar-brand" [href]="['/']">Flag Quiz</a></h1>
+    </div>
+  </nav>
 
-  <div class="content">
+  <div class="content container-fluid">
     <router-outlet></router-outlet>
   </div>
 
 </main>
-
-<router-outlet />

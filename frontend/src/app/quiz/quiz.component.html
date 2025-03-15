@@ -1,6 +1,6 @@
 <span *ngIf="curCountry">
   <img alt="Flag" [src]="curCountry.flagUrl"/>
-  <input type="text" (keyup)="handleTyping()" [(ngModel)]="curGuess" />
+  <input type="text" (keyup)="checkAnswer()" [(ngModel)]="curGuess" />
 </span>
 
 <!-- TEST -->
