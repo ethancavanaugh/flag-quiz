@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryService } from '../country.service';
+import { QuizService } from '../quiz.service';
 import { Country } from '../country';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -18,10 +18,10 @@ export class QuizComponent implements OnInit {
   countryIdx: number = 0;
   curGuess: string = "";
 
-  constructor(private countryService: CountryService, private router: Router) { }
+  constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
-    this.countryService.getAllCountries().subscribe(res => {
+    this.quizService.getCountriesWithSettings().subscribe(res => {
       this.countryList = res;
       this.countryList = this.countryList.slice(0, 3); //TESTING ONLY
 
@@ -48,7 +48,7 @@ export class QuizComponent implements OnInit {
   }
 
   private endGame(): void {
-    this.router.navigate(['/result'])
+    this.quizService.clearSettings();
+    this.router.navigate(['/result']);
   }
-
 }
