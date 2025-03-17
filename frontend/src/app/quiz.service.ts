@@ -11,15 +11,19 @@ export class QuizService {
   baseUrl: string = "http://localhost:8080/countries";
   settings: QuizSettings | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  //-------------MODIFY GAME SETTINGS----------
+  //-------------GAME SETTINGS----------
   setSettings(settings: QuizSettings): void {
     this.settings = settings;
   }
 
   clearSettings(): void {
     this.settings = null;
+  }
+
+  hasSettings(): boolean {
+    return this.settings != null;
   }
 
   //--------------GET COUNTRY LIST------------
