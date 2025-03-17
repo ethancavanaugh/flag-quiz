@@ -1,13 +1,22 @@
 <div class="settings-menu">
   <form [formGroup]="settingsForm" (submit)="submitSettings()">
-    <label for="continent">Choose a continent:</label><br/>
+    <label for="continent">Continent: </label>
     <select formControlName="continent" id="continent" class="form-select-md">
+      <option>All Continents</option>
       <option>Africa</option>
       <option>Asia</option>
       <option>Europe</option>
       <option>North America</option>
       <option>Oceania</option>
       <option>South America</option>
+    </select><br/>
+
+    <label for="numQuestions">Number of questions: </label>
+    <select formControlName="numQuestions" id="numQuestions" class="form-select-md">
+      <option>5</option>
+      <option>10</option>
+      <option>25</option>
+      <option>All</option>
     </select><br/>
 
     <button type="submit" class="btn btn-dark">Start Quiz</button>

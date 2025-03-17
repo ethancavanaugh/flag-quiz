@@ -13,7 +13,7 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  // MODIFY GAME SETTINGS
+  //-------------MODIFY GAME SETTINGS----------
   setSettings(settings: QuizSettings): void {
     this.settings = settings;
   }
@@ -22,13 +22,19 @@ export class QuizService {
     this.settings = null;
   }
 
-  // GET COUNTRY LIST
+  //TEST
+  getNumCountries(): number {
+    return this.settings?.numQuestions == '' ? 197 : +this.settings?.numQuestions! 
+  }
+
+  //--------------GET COUNTRY LIST------------
+
   getAllCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(this.baseUrl + "countries");
   }
 
   getCountriesWithSettings(): Observable<Country[]> {
-    if (this.settings == null){
+    if (this.settings == null || this.settings?.continent == ""){
       return this.getAllCountries();
     }
 

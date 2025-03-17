@@ -24,7 +24,7 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.quizService.getCountriesWithSettings().subscribe(res => {
       this.countryList = res;
-      this.countryList = this.countryList.slice(0, 3); //TESTING ONLY
+      this.countryList = this.countryList.slice(0, this.quizService.getNumCountries()); //TEST
 
       this.nextQuestion();
     });

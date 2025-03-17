@@ -1,3 +1,4 @@
 export interface QuizSettings {
-  continent: string
+  continent: string,
+  numQuestions: string
 }
