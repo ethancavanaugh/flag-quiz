@@ -13,6 +13,16 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
+  // MODIFY GAME SETTINGS
+  setSettings(settings: QuizSettings): void {
+    this.settings = settings;
+  }
+
+  clearSettings(): void {
+    this.settings = null;
+  }
+
+  // GET COUNTRY LIST
   getAllCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(this.baseUrl + "countries");
   }
@@ -23,13 +33,5 @@ export class QuizService {
     }
 
     return this.http.get<Country[]>(this.baseUrl + `countries?continent=${this.settings.continent}`)
-  }
-
-  setSettings(settings: QuizSettings): void {
-    this.settings = settings;
-  }
-
-  clearSettings(): void {
-    this.settings = null;
   }
 }

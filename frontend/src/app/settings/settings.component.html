@@ -1,16 +1,19 @@
 <div class="settings-menu">
-  <label for="continent">Choose a continent:</label><br/>
+  <form [formGroup]="settingsForm" (submit)="submitSettings()">
+    <label for="continent">Choose a continent:</label><br/>
+    <select formControlName="continent" id="continent" class="form-select-md">
+      <option>Africa</option>
+      <option>Asia</option>
+      <option>Europe</option>
+      <option>North America</option>
+      <option>Oceania</option>
+      <option>South America</option>
+    </select><br/>
 
-  <select class="form-select-md" [(ngModel)]="continent" name="continent" id="continent">
-    <option>Africa</option>
-    <option>Asia</option>
-    <option>Europe</option>
-    <option>North America</option>
-    <option>Oceania</option>
-    <option>South America</option>
-  </select><br/>
+    <button type="submit" class="btn btn-dark">Start Quiz</button>
+  </form>
 
-  <button class="btn btn-dark"  (click)="goToQuiz()">Start Quiz</button>
+  
 </div>
 
 

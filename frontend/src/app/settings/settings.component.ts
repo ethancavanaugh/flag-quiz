@@ -1,25 +1,29 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuizService } from '../quiz.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
+
 export class SettingsComponent {
-  continent: string = "";
+  settingsForm = new FormGroup({
+    continent: new FormControl('')
+  })
 
-  constructor(private quizService: QuizService, private router: Router){}
+  constructor(private quizService: QuizService, private router: Router){
 
-  goToQuiz(): void {
-    if (this.continent != ""){
-      this.quizService.setSettings({
-        continent: this.continent
-      });
-    }
+  }
+
+  submitSettings(): void {
+
+    this.quizService.setSettings({
+      continent: this.settingsForm.value.continent ?? ''
+    })
 
     this.router.navigate(['/quiz']);
   }
