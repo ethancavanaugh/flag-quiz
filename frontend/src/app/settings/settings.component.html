@@ -1,7 +1,7 @@
 <div class="settings-menu">
   <form [formGroup]="settingsForm" (submit)="submitSettings()">
     <label for="continent">Continent: </label>
-    <select formControlName="continent" id="continent" class="form-select-md">
+    <select formControlName="continent" id="continent" class="form-select">
       <option>All Continents</option>
       <option>Africa</option>
       <option>Asia</option>
@@ -12,7 +12,7 @@
     </select><br/>
 
     <label for="numQuestions">Number of questions: </label>
-    <select formControlName="numQuestions" id="numQuestions" class="form-select-md">
+    <select formControlName="numQuestions" id="numQuestions" class="form-select">
       <option>5</option>
       <option>10</option>
       <option>25</option>

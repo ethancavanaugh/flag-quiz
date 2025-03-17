@@ -1,13 +1,21 @@
 <main class="main">
 
   <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
+    <div class="container">
       <h1><a class="navbar-brand" [href]="['/']">Flag Quiz</a></h1>
     </div>
   </nav>
 
-  <div class="content container-fluid">
-    <router-outlet></router-outlet>
+  <div class="content container">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col">
+      </div>
+    </div>
   </div>
 
 </main>

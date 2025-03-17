@@ -35,7 +35,6 @@ export class QuizService {
     if (this.settings.numQuestions != ""){
       params = params.set("numQuestions", this.settings.numQuestions);
     }
-    console.log(params);
 
     return this.http.get<Country[]>(this.baseUrl, { params });
   }
