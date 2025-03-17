@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Country } from './model/country';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QuizSettings } from './model/quiz-settings';
 
@@ -8,7 +8,7 @@ import { QuizSettings } from './model/quiz-settings';
   providedIn: 'root'
 })
 export class QuizService {
-  baseUrl: string = "http://localhost:8080/";
+  baseUrl: string = "http://localhost:8080/countries";
   settings: QuizSettings | null = null;
 
   constructor(private http: HttpClient) { }
@@ -22,22 +22,21 @@ export class QuizService {
     this.settings = null;
   }
 
-  //TEST
-  getNumCountries(): number {
-    return this.settings?.numQuestions == '' ? 197 : +this.settings?.numQuestions! 
-  }
-
   //--------------GET COUNTRY LIST------------
-
-  getAllCountries(): Observable<Country[]> {
-    return this.http.get<Country[]>(this.baseUrl + "countries");
-  }
-
-  getCountriesWithSettings(): Observable<Country[]> {
-    if (this.settings == null || this.settings?.continent == ""){
-      return this.getAllCountries();
+  getCountries(): Observable<Country[]> {
+    if (this.settings == null) {
+      return this.http.get<Country[]>(this.baseUrl);
     }
 
-    return this.http.get<Country[]>(this.baseUrl + `countries?continent=${this.settings.continent}`)
+    let params = new HttpParams;
+    if (this.settings.continent != ""){
+      params = params.set("continent", this.settings.continent);
+    }
+    if (this.settings.numQuestions != ""){
+      params = params.set("numQuestions", this.settings.numQuestions);
+    }
+    console.log(params);
+
+    return this.http.get<Country[]>(this.baseUrl, { params });
   }
 }

@@ -4,6 +4,7 @@ import com.ethancavanaugh.flagquiz.model.Country;
 import com.ethancavanaugh.flagquiz.model.CountryDTO;
 import com.ethancavanaugh.flagquiz.services.CountryService;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,10 @@ public class CountryController {
 
     @ResponseBody
     @GetMapping("/countries")
-    public List<CountryDTO> getCountries(@RequestParam(required=false) String continent){
-        if (continent != null){
-            return countryService.findByContinent(continent);
-        }
+    public List<CountryDTO> getCountries(
+            @RequestParam(required=false) String continent,
+            @RequestParam(required=false) Integer numQuestions) {
 
-        return countryService.getAllCountries();
+        return countryService.findCountries(continent, numQuestions);
     }
-
 }

@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -36,23 +37,19 @@ public class CountryService {
         countryRepository.saveAll(countries);
     }
 
-    public List<CountryDTO> getAllCountries(){
-        List<Country> countries = countryRepository.findAll();
+    public List<CountryDTO> findCountries(String continent, Integer numCountries){
+        List<Country> countries = new ArrayList<>();
+        if (continent == null) {
+            countries = countryRepository.findAll();
+        }
+        else {
+            countries = countryRepository.findCountriesByContinent(continent);
+        }
+
+        Collections.shuffle(countries);
+        if (numCountries != null && numCountries < countries.size()) {
+            countries = countries.subList(0, numCountries);
+        }
         return CountryDTO.of(countries);
     }
-
-    public List<CountryDTO> findByContinent(String continent){
-        List<Country> countries = countryRepository.findCountriesByContinent(continent);
-        return CountryDTO.of(countries);
-    }
-
-    public Country getRandomCountry(){
-        List<Country> countries = countryRepository.findAll();
-
-        Random random = new Random();
-        int randomIdx = random.nextInt(countries.size());
-
-        return countries.get(randomIdx);
-    }
-
 }
