@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ResultService } from '../result.service';
 import { QuizResults } from '../model/quiz-results';
-import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-result',
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './result.component.html',
   styleUrl: './result.component.css'
 })
